@@ -1,9 +1,15 @@
+/* eslint-disable prettier/prettier */
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { InjectBot } from 'nestjs-telegraf';
+import { Context, Telegraf } from 'telegraf';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    @InjectBot() private readonly bot: Telegraf<Context>,
+    private readonly appService: AppService,
+  ) {}
 
   @Get()
   getHello(): string {
