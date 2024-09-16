@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export default () => ({
   dbConfig: {
     host: process.env.DATABASE_HOST,

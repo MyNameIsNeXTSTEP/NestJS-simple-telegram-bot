@@ -12,6 +12,7 @@ import { UserModule } from './user.module';
 import { TelegrafModule } from 'nestjs-telegraf';
 import { createTelegrafConfig } from './config/createTelegrafConfig';
 import { BotModule } from './bot.module';
+import { sessionMiddleware } from './middleware/session.middleware';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { BotModule } from './bot.module';
       useFactory: createTelegrafConfig,
     }),
     BotModule,
-    // TelegrafConfigModule,
+    TelegrafConfigModule,
     UserModule,
   ],
 
@@ -45,13 +46,14 @@ import { BotModule } from './bot.module';
     },
     AppUpdate,
     AppService,
+    ConfigService,
   ],
 })
 
-export class AppModule {};
+export class AppModule {}
 
 // implements NestModule {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer.apply(SessionMiddleware).forRoutes('*');
-  // };
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(sessionMiddleware).forRoutes('*');
+//   };
 // };
