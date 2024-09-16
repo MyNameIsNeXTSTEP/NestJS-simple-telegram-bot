@@ -6,4 +6,7 @@ export default () => ({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
   },
+  telegram: {
+    token: process.env.TG_BOT_TOKEN,
+  },
 });

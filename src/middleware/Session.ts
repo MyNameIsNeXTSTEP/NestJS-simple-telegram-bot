@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
-import { Inject, Middleware } from '@nestjs/common';
-import { ContextMessageUpdate } from 'telegraf';
+import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
+import { Context } from 'telegraf';
 import { User } from '../models/user';
 
-@Middleware()
-export class SessionMiddleware {
+@Injectable()
+export class SessionMiddleware implements NestMiddleware {
   constructor(
     @Inject('USER_MODEL') private readonly userModel: User
   ) { };
 
-  async use(ctx: ContextMessageUpdate, next: () => Promise<any>) {
+  async use(ctx: Context, next: () => Promise<any>) {
     const userId = ctx.from?.id;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const user = await this.userModel.user(userId);
 
     // if (user) {
@@ -18,10 +19,10 @@ export class SessionMiddleware {
     // } else {
     //   await this.userModel.addUser(userId, userName);
     // }
-
+    console.log(11)
     await next();
 
     // Update session data in the database
     // await User.updateUser(userId, ctx.session);
   }
-}
+};

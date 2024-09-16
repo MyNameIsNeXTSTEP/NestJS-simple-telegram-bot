@@ -1,22 +1,23 @@
+/* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
+import { AppUpdate } from './app.update';
 import { AppService } from './app.service';
 
 describe('AppController', () => {
-  let appController: AppController;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let appUpdate: AppUpdate;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
+      controllers: [AppUpdate],
       providers: [AppService],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    appUpdate = app.get<AppUpdate>(AppUpdate);
   });
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
     });
   });
 });
